@@ -5,16 +5,28 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+import {FormsModule} from '@angular/forms';
+import { EditTableComponent } from './edit-table/edit-table.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { ListTableComponent } from './list-table/list-table.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EditTableComponent,
+    ListTableComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule,
+    MatTableModule,
+    MatInputModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
