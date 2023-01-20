@@ -10,27 +10,27 @@ import { MatTable } from '@angular/material/table';
 export class EditTableComponent {
 
   columnas: string[] = ['id', 'description', 'delete'];
-  datos: Articulo[] = [new Articulo(1, 'papas'),
+  data: Articulo[] = [new Articulo(1, 'papas'),
   new Articulo(2, 'manzanas'),
   new Articulo(3, 'naranjas'),
   ];
   articuloselect: Articulo = new Articulo(0, "");
-  
-  @ViewChild(MatTable) tabla1!: MatTable<Articulo>;
+
+  @ViewChild(MatTable) table!: MatTable<Articulo>;
   removeLine(cod: number) {
-    if (confirm("¿Estás segur@ de que lo quieres borrar?")) {
-      this.datos.splice(cod, 1);
-      this.tabla1.renderRows();
+    this.data.splice(cod, 1);
+    this.table.renderRows();
+  }
+  removeAll() {
+    if (confirm("¿Estás segur@ de que quieres borrar todo?")) {
+      this.data.splice(0, this.data.length);
+      this.table.renderRows();
     }
   }
-  removeAll(){
-    this.datos.splice(0, this.datos.length)
-  }
   addArticle() {
-   let lastIndex: number = this.datos.length+1
-    this.datos.push(new Articulo(lastIndex, this.articuloselect.description));
-    this.tabla1.renderRows();
-    this.articuloselect = new Articulo(0, "");
+    let lastIndex: number = this.data.length + 1;
+    this.data.push(new Articulo(lastIndex, this.articuloselect.description));
+    this.table.renderRows();
   }
 }
 
