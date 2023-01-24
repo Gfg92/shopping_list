@@ -20,7 +20,7 @@ export class EditTableComponent {
     });
   }
 
-  columnas: string[] = ['id', 'description', 'delete'];
+  columnas: string[] = ['description', 'delete'];
   articleList: Article[] = [];
   description!: string;
 
@@ -38,7 +38,7 @@ export class EditTableComponent {
     }
   }
   addArticle() {
-    let art = new Article(this.articleList.length ,this.description);
+    let art = new Article(this.description);
     this.articleList.push(art);
     this.table.renderRows();
     this.dataService.saveArticles(this.articleList);

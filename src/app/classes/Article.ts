@@ -1,8 +1,7 @@
 class Article {
-  private id: number
+  
   private description: string
-  constructor (newId: number, newDescription: string){
-    this.id = newId;
+  constructor (newDescription: string){
     this.description = newDescription;
   }
 }
