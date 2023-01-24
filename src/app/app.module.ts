@@ -10,8 +10,11 @@ import { EditTableComponent } from './edit-table/edit-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { ListTableComponent } from './list-table/list-table.component';
-import { MatIconModule} from '@angular/material/icon'
-import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule} from '@angular/material/icon';
+import { DataService } from './data.service';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 
 @NgModule({
@@ -30,8 +33,10 @@ import { RouterModule, Routes } from '@angular/router';
     MatTableModule,
     MatInputModule,
     MatIconModule,
+    HttpClientModule
+  
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

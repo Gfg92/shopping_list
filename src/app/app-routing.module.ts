@@ -4,7 +4,7 @@ import { EditTableComponent } from './edit-table/edit-table.component';
 import { ListTableComponent } from './list-table/list-table.component';
 
 const routes: Routes = [
-  { path: 'listTable', component: ListTableComponent },
+  { path: '', component: ListTableComponent },
   { path: 'editTable', component: EditTableComponent },
 ];
 
