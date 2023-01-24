@@ -11,6 +11,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { ListTableComponent } from './list-table/list-table.component';
 import { MatIconModule} from '@angular/material/icon'
+import { RouterModule, Routes } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -27,8 +29,7 @@ import { MatIconModule} from '@angular/material/icon'
     FormsModule,
     MatTableModule,
     MatInputModule,
-    MatIconModule
-  
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

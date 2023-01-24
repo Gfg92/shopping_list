@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button';
+import { Article } from '../classes/Article';
 
 
 @Component({
@@ -11,31 +11,26 @@ import {MatButtonModule} from '@angular/material/button';
 export class EditTableComponent {
 
   columnas: string[] = ['id', 'description', 'delete'];
-  data: Articulo[] = [new Articulo(1, 'papas'),
-  new Articulo(2, 'manzanas'),
-  new Articulo(3, 'naranjas'),
-  ];
-  articuloselect: Articulo = new Articulo(0, "");
+  articleList: Article[] = [];
+  description!: string;
 
-  @ViewChild(MatTable) table!: MatTable<Articulo>;
+
+  @ViewChild(MatTable) table!: MatTable<String>;
   removeLine(cod: number) {
-    this.data.splice(cod, 1);
+    this.articleList.splice(cod, 1);
     this.table.renderRows();
   }
   removeAll() {
     if (confirm("¿Estás segur@ de que quieres borrar todo?")) {
-      this.data.splice(0, this.data.length);
+      this.articleList.splice(0, this.articleList.length);
       this.table.renderRows();
     }
   }
   addArticle() {
-    let lastIndex: number = this.data.length + 1;
-    this.data.push(new Articulo(lastIndex, this.articuloselect.description));
+    let art = new Article(this.articleList.length ,this.description);
+    this.articleList.push(art);
     this.table.renderRows();
   }
+
 }
 
-export class Articulo {
-  constructor(public id: number, public description: string) {
-  }
-}
