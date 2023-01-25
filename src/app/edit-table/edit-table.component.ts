@@ -26,9 +26,11 @@ export class EditTableComponent {
 
 
   @ViewChild(MatTable) table!: MatTable<String>;
-  removeLine(cod: number) {
+  removeArticle(cod: number) {
     this.articleList.splice(cod, 1);
     this.table.renderRows();
+    this.dataService.deleteArticle(cod);
+    this.dataService.saveArticles(this.articleList);
   }
   removeAll() {
     if (confirm("¿Estás segur@ de que quieres borrar todo?")) {
