@@ -35,17 +35,15 @@ export class ListTableComponent {
     return this.dataService.loadArticles()
   }
   @ViewChild(MatTable) table!: MatTable<String>;
-  removeArticle(cod: number) {
-    this.articleList.splice(cod, 1);
-    this.table.renderRows();
-    this.dataService.deleteArticle(cod);
-    this.dataService.saveArticles(this.articleList);
-  }
+  
 
-  addBoughtList(art: Article, cod:number) {
+  addBoughtList(art: Article, num:number) {
       this.boughtList.push(art);
       this.dataService.addBoughtArticle(this.boughtList);
-      this.removeArticle(cod);
+      this.articleList.splice(num, 1);
+      this.table.renderRows();
+      this.dataService.deleteArticle(num);
+      this.dataService.saveArticles(this.articleList);
   }
 
   getBoughtArticles() {
