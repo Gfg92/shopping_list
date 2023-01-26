@@ -36,8 +36,28 @@ export class DataService {
     return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/article.json')
   }
 
+  addBoughtArticle(list: Article[]){
+    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json', list).subscribe(
+      response => console.log("Se han guardado los artículos en comprados" + response),
+      error => console.log("Error: " + error),
+    );
+  }
+  loadBoughtArticle(){
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json')
+  }
+  
+  deleteBoughtArticle(id: number) {
+    let url = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought/' + id + '.json';
+    this.httpClient.delete(url).subscribe(
+      response => console.log("Se ha eliminado el artículo de comprado: " + response),
+      error => console.log("Error " + error),
+    );
 
+  }
 
+  dropBoughtArticles() {
+    this.httpClient.delete('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json').subscribe()
+  }
 
 
 }

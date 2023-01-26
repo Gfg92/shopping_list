@@ -9,21 +9,31 @@ import { DataService } from '../data.service';
   styleUrls: ['./list-table.component.css']
 })
 export class ListTableComponent {
-  constructor(private dataService: DataService) { }
-  ngOnInit(): void {
-    this.getArticles().subscribe(myArticles => {
-      console.log(myArticles);
-      this.articleList = Object.values(myArticles);
-    });
-  }
 
   columnas: string[] = ['description', 'delete'];
   articleList: Article[] = [];
   boughtList: Article[] = [];
   description!: string;
   selectedArticles: Article[] = [];
+  check: boolean = false;
 
+  constructor(private dataService: DataService) { }
 
+  ngOnInit(): void {
+    this.getArticles().subscribe(myArticles => {
+      console.log(myArticles);
+      this.articleList = Object.values(myArticles);
+    });
+
+    this.getBoughtArticles().subscribe(myArt => {
+      console.log(myArt);
+      this.boughtList = Object.values(myArt);
+    });
+  }
+
+  getArticles() {
+    return this.dataService.loadArticles()
+  }
   @ViewChild(MatTable) table!: MatTable<String>;
   removeArticle(cod: number) {
     this.articleList.splice(cod, 1);
@@ -31,25 +41,15 @@ export class ListTableComponent {
     this.dataService.deleteArticle(cod);
     this.dataService.saveArticles(this.articleList);
   }
-  removeAll() {
-    if (confirm("¿Estás segur@ de que quieres borrar todo?")) {
-      this.articleList.splice(0, this.articleList.length);
-      this.table.renderRows();
-      this.dataService.dropArticles();
-    }
-  }
-  addArticle() {
-    let art = new Article(this.description);
-    this.articleList.push(art);
-    this.table.renderRows();
-    this.dataService.saveArticles(this.articleList);
-  }
-  getArticles() {
-    return this.dataService.loadArticles()
+
+  addBoughtList(art: Article, cod:number) {
+      this.boughtList.push(art);
+      this.dataService.addBoughtArticle(this.boughtList);
+      this.removeArticle(cod);
   }
 
-  addBoughtList(art: Article){
-    this.boughtList.push(art);
+  getBoughtArticles() {
+    return this.dataService.loadBoughtArticle()
   }
 
 
