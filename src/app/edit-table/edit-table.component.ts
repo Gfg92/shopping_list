@@ -11,8 +11,14 @@ import { DataService } from '../data.service';
 })
 export class EditTableComponent {
 
+  columns: string[] = ['description', 'delete'];
+  articleList: Article[] = [];
+  id! : number;
+  description!: string;
+  @ViewChild(MatTable) table!: MatTable<String>;
 
   constructor(private dataService: DataService){}
+  
   ngOnInit():void{
     this.getArticles().subscribe(myArticles => {
       console.log(myArticles);
@@ -20,12 +26,8 @@ export class EditTableComponent {
     });
   }
 
-  columnas: string[] = ['description', 'delete'];
-  articleList: Article[] = [];
-  description!: string;
 
-
-  @ViewChild(MatTable) table!: MatTable<String>;
+ 
   removeArticle(cod: number) {
     this.articleList.splice(cod, 1);
     this.table.renderRows();
@@ -46,7 +48,7 @@ export class EditTableComponent {
     this.dataService.saveArticles(this.articleList);
   }
   getArticles(){
-    return this.dataService.loadArticles()
+    return this.dataService.loadEditArticleList()
   }
 
 }

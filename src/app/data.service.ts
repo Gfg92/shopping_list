@@ -14,14 +14,24 @@ export class DataService {
 
 
   saveArticles(articles: Article[]) {
-    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/article.json', articles).subscribe(
+    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList.json', articles).subscribe(
+      response => console.log("Se han guardado los artículos" + response),
+      error => console.log("Error: " + error),
+    );
+    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json', articles).subscribe(
       response => console.log("Se han guardado los artículos" + response),
       error => console.log("Error: " + error),
     );
   }
   deleteArticle(id: number) {
-    let url = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/article/' + id + '.json';
+    let url = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList/' + id + '.json';
     this.httpClient.delete(url).subscribe(
+      response => console.log("Se ha eliminado el artículo: " + response),
+      error => console.log("Error " + error),
+    );
+
+    let url1 = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList/' + id + '.json';
+    this.httpClient.delete(url1).subscribe(
       response => console.log("Se ha eliminado el artículo: " + response),
       error => console.log("Error " + error),
     );
@@ -29,35 +39,16 @@ export class DataService {
   }
 
   dropArticles() {
-    this.httpClient.delete('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/article.json').subscribe()
+    this.httpClient.delete('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList.json').subscribe()
+    this.httpClient.delete('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json').subscribe()
   }
 
-  loadArticles() {
-    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/article.json')
+  loadEditArticleList() {
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList.json')
   }
 
-  addBoughtArticle(list: Article[]){
-    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json', list).subscribe(
-      response => console.log("Se han guardado los artículos en comprados" + response),
-      error => console.log("Error: " + error),
-    );
+  loadArticleList() {
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json')
   }
-  loadBoughtArticle(){
-    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json')
-  }
-  
-  deleteBoughtArticle(id: number) {
-    let url = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought/' + id + '.json';
-    this.httpClient.delete(url).subscribe(
-      response => console.log("Se ha eliminado el artículo de comprado: " + response),
-      error => console.log("Error " + error),
-    );
-
-  }
-
-  dropBoughtArticles() {
-    this.httpClient.delete('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/bought.json').subscribe()
-  }
-
 
 }
