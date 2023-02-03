@@ -37,7 +37,6 @@ export class EditTableComponent {
       this.articleList.splice(0, this.articleList.length);
       this.table.renderRows();
       this.dataService.dropArticles();
-      this.dataService.dropBoughtArticles();
     }
   }
   addArticle() {

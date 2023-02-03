@@ -13,6 +13,7 @@ export class ListTableComponent {
   columnas: string[] = ['description', 'delete'];
   articleList: Article[] = [];
   boughtList: Article[] = [];
+  newBoughtList: Article[] = [];
   description!: string;
   selectedArticles: Article[] = [];
   check: boolean = false;
@@ -24,32 +25,42 @@ export class ListTableComponent {
       console.log(myArticles);
       this.articleList = Object.values(myArticles);
     });
-
+    
     this.getBoughtArticles().subscribe(myArt => {
       console.log(myArt);
       this.boughtList = Object.values(myArt);
     });
+
+    this.newBoughtList = this.boughtList;
   }
 
   getArticles() {
     return this.dataService.loadArticles()
   }
+  getBoughtArticles() {
+    return this.dataService.loadBoughtArticle();
+  }
+
   @ViewChild(MatTable) table!: MatTable<String>;
+
+
+  addBoughtList(art: Article, num: number) {
+    this.newBoughtList.push(art);
+    this.boughtList.splice(num, 1);
+
+    /*this.dataService.addBoughtArticle(this.boughtList);
+    this.articleList.splice(num, 1);
+    this.table.renderRows();
+    this.dataService.deleteArticle(num);
+    this.dataService.saveArticles(this.articleList);*/
+  }
+
   
 
-  addBoughtList(art: Article, num:number) {
-      this.boughtList.push(art);
-      this.dataService.addBoughtArticle(this.boughtList);
-      this.articleList.splice(num, 1);
-      this.table.renderRows();
-      this.dataService.deleteArticle(num);
-      this.dataService.saveArticles(this.articleList);
+  deleteBoughtList() {
+    this.boughtList.splice(0, this.boughtList.length);
+    this.dataService.dropBoughtArticles();
   }
-
-  getBoughtArticles() {
-    return this.dataService.loadBoughtArticle()
-  }
-
 
 
 
