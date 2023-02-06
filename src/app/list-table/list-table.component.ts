@@ -13,6 +13,8 @@ export class ListTableComponent {
   columns: string[] = ['description', 'delete'];
   articleList: Article[] = [];
   @ViewChild(MatTable) table!: MatTable<String>;
+  purchasedList: Article[] = [];
+  description! : string;
 
   constructor(private dataService: DataService) { }
 
@@ -21,17 +23,24 @@ export class ListTableComponent {
     
   }
 
-
   getArticles(){
     return this.dataService.loadArticleList().subscribe(myArticles => {
       console.log(myArticles);
       this.articleList = Object.values(myArticles);
     });
   }
-
   
-
-
+  addPurchasedArticle(index: number) {
+    const article = this.articleList[index];
+    const purchasedIndex = this.purchasedList.indexOf(article);
+    if (purchasedIndex === -1) {
+      this.purchasedList.push(article);
+      this.dataService.addPurchasedList(this.purchasedList);
+    } else {
+      this.purchasedList.splice(purchasedIndex, 1);
+      this.dataService.deletePurchasedArticle(purchasedIndex);
+    }
+  }
 
 
 }

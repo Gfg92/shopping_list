@@ -13,7 +13,6 @@ export class EditTableComponent {
 
   columns: string[] = ['description', 'delete'];
   articleList: Article[] = [];
-  id! : number;
   description!: string;
   @ViewChild(MatTable) table!: MatTable<String>;
 

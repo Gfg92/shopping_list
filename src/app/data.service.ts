@@ -4,6 +4,7 @@ import { Article } from './classes/Article';
 
 
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -36,6 +37,12 @@ export class DataService {
       error => console.log("Error " + error),
     );
 
+    // let url2 = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/purchasedArticleList/' + id + '.json';
+    // this.httpClient.delete(url2).subscribe(
+    //   response => console.log("Se ha eliminado el artículo: " + response),
+    //   error => console.log("Error " + error),
+    // );
+
   }
 
   dropArticles() {
@@ -50,5 +57,28 @@ export class DataService {
   loadArticleList() {
     return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json')
   }
+
+  addPurchasedList(art: Article[]){
+    this.httpClient.put('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/purchasedArticleList.json', art).subscribe(
+      response => console.log("Se han guardado los artículos" + response),
+      error => console.log("Error: " + error),
+    );
+  }
+
+  deletePurchasedArticle(id: number){
+    let url = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/purchasedArticleList/' + id + '.json';
+    this.httpClient.delete(url).subscribe(
+      response => console.log("Se ha eliminado el artículo: " + response),
+      error => console.log("Error " + error),
+    );
+  }
+
+  loadPurchasedList(){
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/purchasedArticleList.json')
+
+  }
+
+
+
 
 }

@@ -13,7 +13,7 @@ import { ListTableComponent } from './list-table/list-table.component';
 import { MatIconModule} from '@angular/material/icon';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
-
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 
 
@@ -21,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     EditTableComponent,
-    ListTableComponent
+    ListTableComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatTableModule,
     MatInputModule,
     MatIconModule,
+    MatCheckboxModule,
     HttpClientModule
   
   ],
