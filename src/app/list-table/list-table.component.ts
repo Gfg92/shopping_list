@@ -10,37 +10,23 @@ import { DataService } from '../data.service';
 })
 export class ListTableComponent {
 
-  columns: string[] = ['description', 'delete'];
+  columns: string[] = ['description'];
   articleList: Article[] = [];
   @ViewChild(MatTable) table!: MatTable<String>;
-  purchasedList: Article[] = [];
-  description! : string;
+  description!: string;
+
 
   constructor(private dataService: DataService) { }
 
   ngOnInit(): void {
     this.getArticles();
-    
   }
 
-  getArticles(){
+  getArticles() {
     return this.dataService.loadArticleList().subscribe(myArticles => {
       console.log(myArticles);
       this.articleList = Object.values(myArticles);
     });
   }
-  
-  addPurchasedArticle(index: number) {
-    const article = this.articleList[index];
-    const purchasedIndex = this.purchasedList.indexOf(article);
-    if (purchasedIndex === -1) {
-      this.purchasedList.push(article);
-      this.dataService.addPurchasedList(this.purchasedList);
-    } else {
-      this.purchasedList.splice(purchasedIndex, 1);
-      this.dataService.deletePurchasedArticle(purchasedIndex);
-    }
-  }
-
 
 }

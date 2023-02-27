@@ -1,7 +1,8 @@
 class Article {
   private description: string;
-  constructor ( newDescription: string){
-    this.description = newDescription;
+  
+  constructor(description: string) {
+    this.description = description;
   }
   getDescription(): string {
     return this.description;

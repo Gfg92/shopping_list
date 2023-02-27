@@ -25,8 +25,6 @@ export class EditTableComponent {
     });
   }
 
-
- 
   removeArticle(cod: number) {
     this.articleList.splice(cod, 1);
     this.table.renderRows();
@@ -45,6 +43,7 @@ export class EditTableComponent {
     this.articleList.push(art);
     this.table.renderRows();
     this.dataService.saveArticles(this.articleList);
+    this.description = '';
   }
   getArticles(){
     return this.dataService.loadEditArticleList()
