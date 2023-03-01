@@ -15,6 +15,7 @@ import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './login/login.component';
+import { LoginService } from './login/login.service';
 
 
 
@@ -40,7 +41,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
   
   ],
-  providers: [DataService],
+  providers: [DataService, LoginService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

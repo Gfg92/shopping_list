@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Article } from './classes/Article';
+import { LoginService } from './login/login.service';
 
 
 
@@ -10,8 +11,8 @@ import { Article } from './classes/Article';
 })
 export class DataService {
 
-  
-  constructor(private httpClient: HttpClient) { }
+
+  constructor(private httpClient: HttpClient, private loginService: LoginService) { }
 
 
   saveArticles(articles: Article[]) {
@@ -51,11 +52,13 @@ export class DataService {
   }
 
   loadEditArticleList() {
-    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList.json')
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/editArticleList.json?auth=' + token)
   }
 
   loadArticleList() {
-    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json')
+    const token = this.loginService.getIdToken();
+    return this.httpClient.get('https://db-article-default-rtdb.europe-west1.firebasedatabase.app/articleList.json?auth=' + token)
   }
 
 }

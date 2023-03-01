@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 const routes: Routes = [
   { path: '', component: ListTableComponent },
   { path: 'editTable', component: EditTableComponent },
+  { path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
