@@ -14,6 +14,7 @@ import { MatIconModule} from '@angular/material/icon';
 import { DataService } from './data.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { LoginComponent } from './login/login.component';
 
 
 
@@ -22,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     AppComponent,
     EditTableComponent,
     ListTableComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -35,7 +37,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatInputModule,
     MatIconModule,
     MatCheckboxModule,
-    HttpClientModule
+    HttpClientModule,
   
   ],
   providers: [DataService],
