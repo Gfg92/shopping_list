@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { LoginComponent } from './login/login.component';
 import { LoginService } from './login/login.service';
+import { CookieService } from 'ngx-cookie-service';
+import { LoginGuardian } from './login/login_guardian';
 
 
 
@@ -41,7 +43,7 @@ import { LoginService } from './login/login.service';
     HttpClientModule,
   
   ],
-  providers: [DataService, LoginService],
+  providers: [DataService, LoginService, CookieService, LoginGuardian],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

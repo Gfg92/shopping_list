@@ -2,7 +2,8 @@
   <mat-toolbar style="background-color: rgb(49, 20, 1);">
       <button mat-button routerLink="" style="color: rgb(255, 255, 255); font-weight: bold;">Lista</button>
       <button mat-button routerLink="/editTable" style="color: rgb(255, 255, 255); font-weight: bold;">Editar</button>
-      <button mat-button routerLink="/login" style="color: rgb(255, 255, 255); font-weight: bold; margin-left: auto;">Login</button>
+      <button mat-button *ngIf="!estaLogueado()" routerLink="/login" style="color: rgb(255, 255, 255); font-weight: bold; margin-left: auto; background-color: rgb(69, 103, 255);">Login</button>
+      <button mat-button *ngIf="estaLogueado()" (click)="logout()" style="color: rgb(255, 255, 255); font-weight: bold; margin-left: auto; background-color: rgb(255, 105, 85);">Logout</button>
   </mat-toolbar>
   <router-outlet></router-outlet>
 </div>

@@ -38,12 +38,6 @@ export class DataService {
       error => console.log("Error " + error),
     );
 
-    // let url2 = 'https://db-article-default-rtdb.europe-west1.firebasedatabase.app/purchasedArticleList/' + id + '.json';
-    // this.httpClient.delete(url2).subscribe(
-    //   response => console.log("Se ha eliminado el artículo: " + response),
-    //   error => console.log("Error " + error),
-    // );
-
   }
 
   dropArticles() {

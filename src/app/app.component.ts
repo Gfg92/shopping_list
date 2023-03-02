@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import firebase from 'firebase/compat/app';
+import { LoginService } from './login/login.service';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,10 @@ import firebase from 'firebase/compat/app';
 })
 export class AppComponent {
   title = 'shopping_list';
+
+  constructor(private loginService: LoginService) {
+
+  }
 
   ngOnInit(): void {
 
@@ -19,6 +24,12 @@ export class AppComponent {
     });
   }
 
+  estaLogueado(){
+    return this.loginService.estaLogueado();
+  }
 
+  logout(){
+    this.loginService.logout();
+  }
 
 }
